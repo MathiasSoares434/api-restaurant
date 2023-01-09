@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H & M</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courier+Prime:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/242452-removebg-preview.png"  >
+</head>
+<body>
+           
+
+    <div class="options">
+
+        <div class="nav_content">
+                <ul class="nav_list">
+                    <a href="#" class="nav_list-item" id="first-item">Lista de Clientes</a>
+                    
+                    <a href="#" class="nav_list-item" id="second-item">Cadastro de Cliente</a> 
+                    <a href="#" class="nav_list-item" id="third-item">Produtos Disponivéis</a> 
+                    <a href="#" class="nav_list-item" id="forth-item">Pedido do Cliente</a> 
+                </ul>
+        </div>
+
+    </div>
+      
+  <div class="restaurant">
+
+
+      
+      <div class="company-name">
+          <img class="img" src="/img/images-removebg-preview.png" alt="fast-food" width="12%">
+          <h1>H & M </h1>
+          <h3>Restaurante</h3>
+      </div>
+              <br>
+      <div class="login-screen">
+          <div class="login">
+            <h1>Login</h1>
+            <br>
+            <form action="" id="form-login" class="form-login">
+              <div>
+                <label>Usuário:</label>
+                <input type="text" placeholder="Digite o usuário" name="user">
+              </div>
+              <div>
+                <label>Senha:</label>
+                <input type="password" placeholder="Digite a senha" name="password">
+              </div>
+              <div>
+                <button class="btn-login" type="submit">Entrar</button>
+              </div>
+            </form>
+          </div>
+
+      </div>
+
+      <div class="loading hidden"></div>
+
+      <div class="cadastro hidden">
+          <form action="GET" id="form-cadastro" >
+              <div>
+              <label>Nome:</label>
+              <input type="text" name="name" id="" placeholder="Digite seu nome">
+              <span></span>
+              </div>
+              <div>
+              <label>Email:</label>
+              <input type="email" name="email" id="" placeholder="Digite seu email">
+              <span></span>
+              </div>
+              <div>
+              <label>Telefone:</label>
+              <input type="string" name="phone" id="" placeholder="Digite seu telefone">
+              <span></span>
+              </div>
+              <div>
+              <label>Endereço:</label>
+              <input type="string" name="address" id="" placeholder="Digite seu endereço">
+              <span></span>
+              </div>
+              <div>
+              <button class="btn-cadastro" type="submit">Cadastrar</button>
+              </div>
+          </form>
+      </div>
+
+      <div class="container list-customers hidden">
+          <h1>Listagem de clientes</h1>
+          <ul class="customers"></ul>
+          <br>
+          <button href = "#" class="btn-exit">Fechar</button>
+      </div>
+
+      <div class="container register-products hidden">
+          <h1>Cadastrar Produtos</h1>
+          <form action="" id="registerProducts">
+            <div>
+              <label>Nome:</label>
+              <input type="text" name="name" id="" placeholder="Digite o nome do produto">
+              <span></span>
+            </div>
+            <br>
+            <div>
+              <label>Preço:</label>
+              <input type="text" name="price" id="" placeholder="Digite o preço do produto">
+              <span></span>
+            </div>
+            <br>
+            <div>
+              <button type="submit">Cadastrar</button>
+            </div>
+            <br>
+          </form>
+          <button href = "#" class="exit">Fechar</button>
+      </div>
+      
+      <div class="container register-requests hidden">
+        <h1>Cadastrar Pedidos:</h1>
+        <br>
+        <form action="" id="registerRequests" class="registerRequests">
+          <div>
+            <label>Código do cliente:</label>
+            <select name="codeCustomer" id="" class="codeCustomer"></select>
+            <span></span>
+          </div>
+          <div>
+            <label>Código do produto:</label>
+            <select name="codeProduct" id="" class="codeProduct"></select>
+            <span></span>
+          </div>
+          <div>
+            <label>Data de criação:</label>
+            <input type="text" name="dataCriation" id="" placeholder="dd/mm/aaaa">
+            <span></span>
+          </div>        
+          <div>
+            <label>Status do Pedido:</label>
+            <select name="statusRequest" id="">
+              <option value="processando">Pendente</option>
+              <option value="em-construção">Em preparo</option>
+              <option value="saindo-para-entrega">Em entrega</option>
+              <option value="entrega-efetuada">Entregue</option>
+              <option value="entrega-cancelada">Cancelado</option>
+            </select>
+            <span></span>
+          </div>
+          <br>
+          <div>
+            <button type="submit">Cadastrar Pedido:</button>
+          </div>
+        </form>
+        <br>
+        <button href = "#" class="exit">Fechar</abutton>
+      </div>
+      <div class="container list-requests hidden">
+        <h1>Listagem de Pedidos</h1>
+        <ul class="requests">
+        </ul>
+        <button href = "#" class="exit">Fechar</button>
+      </div>
+
+      <div class="container edit-status-request hidden">
+        <h1>Editar status do pedido</h1>
+        <input type="hidden" name="id">
+        <form action="" class="formEdit" id="formEdit">
+          <input type="hidden" name="id">
+          <br>
+          <select name="statusRequest" id="">
+            <option value="processando">Pendente</option>
+            <option value="em-construção">Em preparo</option>
+            <option value="saindo-para-entrega">Em entrega</option>
+            <option value="entrega-efetuada">Entregue</option>
+            <option value="entrega-cancelada">Cancelado</option>
+          </select>
+          <div>
+            <br>
+            <button type="submit" class="btn-edit">Alterar Status do Pedido</button>
+          </div>
+        </form>
+      </div> 
+  </div>     
+    <script src="https://kit.fontawesome.com/b0d02c4c92.js" crossorigin="anonymous"></script>
+    <script src="/javascript/main.js"></script>
+</body>
+</html>

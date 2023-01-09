@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --login-background: rgb(146, 62, 146);
+    --login-paddin: 10px;
+    --login-width: 100%;
+    --login-max-width: 396px;
+    --login-height: 300px;
+    --login-display: flex;
+    --login-flex-direction: column;
+    --login-text-align: center;
+    --login-padding: 15px;
+    --login-border-radius: 12px;
+    --login-margin-left: auto;
+    --login-margin-right: auto;
+    --login-border-style: solid;
+    --btn-background-color: rgb(138, 25, 153);
+    --btn-padding: 10px 30px;
+    --btn-border-radius: 10% ;
+    --btn-border-style: none;
+    --btn-color: gray;
+}
+body{
+    background-color: rgb(165, 73, 165);
+}
+.hidden{
+    display: none;
+}
+/*HEADER*/
+.options .nav_content{
+    justify-content: center;
+}
+.options .nav_content .nav_list{
+    display: flex;
+}
+.options .nav_content .nav_list .nav_list-item{
+    text-decoration: none;    
+    padding: 30px;
+    color: rgb(211, 211, 211);
+    margin-left: 124px;
+    list-style: none;
+    cursor: pointer;
+}
+.options .nav_content .nav_list .nav_list-item:hover{
+    color: rgb(122, 8, 31);
+}
+.img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.company-name{
+    text-align: center;
+    font-size: 17px;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+/*LOGIN*/
+.login-screen .login{
+    width: 100%;
+    max-width: 396px;
+    background-color: var(--login-background);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+}
+.login-screen .login h1{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.login-screen .login .form-login div{
+    padding: 10px;
+
+}
+.login-screen .login .form-login div input{
+    background-color: rgb(138, 25, 153);
+    padding: 2%;
+    border-style: none;
+    border-radius: 3%;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.login-screen .login .form-login div label{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.btn-login{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+/*CADASTRO*/
+.cadastro{
+    width: 100%;
+    max-width: 396px;
+    background-color: var(--login-background);
+    height: 300px;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+}
+
+.cadastro form{
+     margin-top: 10%;
+}
+.cadastro div{
+    padding: var(--login-paddin);
+}
+.cadastro div label{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.cadastro div input{
+    background-color: rgb(138, 25, 153);
+    padding: 2%;
+    border-style: none;
+    border-radius: 3%;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.btn-cadastro{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+/*LISTAGEM DE CLIENTES*/
+.container{
+    text-align: center;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: var(--login-background);
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 396px;
+}
+.btn-exit{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.register-products h1,
+.register-products input,
+.register-products label,
+.register-products button{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+.register-products input{
+    background-color: rgb(138, 25, 153);
+    padding: 2%;
+    border-style: none;
+    border-radius: 3%;
+}
+.register-products button{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+}
+/*CADASTRO DE PEDIDOS*/
+.register-requests,
+.register-requests select,
+.register-requests input,
+.register-requests button{
+    background-color: var(--login-background);
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;    
+}
+.register-requests input{
+    background-color: rgb(138, 25, 153);
+    padding: 2% 1%;
+    border-style: none;
+    border-radius: 3%;
+    text-align: center;
+}
+.register-requests select{
+    background-color: rgb(138, 25, 153);
+    padding: 5px 10px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+}
+.register-requests button{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray; 
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
+}
+/*STATUS DE PEDIDOS*/
+.edit-status-request,
+.edit-status-request select,
+.edit-status-request input,
+.edit-status-request button{
+    background-color: var(--login-background);
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;  
+}
+.edit-status-request button{
+    background-color: rgb(138, 25, 153);
+    padding: 10px 30px;
+    border-radius: 5% ;
+    border-style: none;
+    color: gray; 
+}
+.edit-status-request input{
+    background-color: rgb(138, 25, 153);
+    padding: 2% 1%;
+    border-style: none;
+    border-radius: 3%;
+    text-align: center;
+}
+.edit-status-request select{
+    background-color: rgb(138, 25, 153);
+    padding: 5px 10px;
+    border-radius: 10% ;
+    border-style: none;
+    color: gray;
+}
