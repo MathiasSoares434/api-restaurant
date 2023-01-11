@@ -38,9 +38,9 @@ body{
 }
 .options .nav_content .nav_list .nav_list-item{
     text-decoration: none;    
-    padding: 30px;
+    padding: 20px;
     color: rgb(211, 211, 211);
-    margin-left: 124px;
+    margin-left: 123px;
     list-style: none;
     cursor: pointer;
 }
@@ -116,12 +116,12 @@ body{
     margin-right: auto;
     border-style: solid;
 }
-
-.cadastro form{
-     margin-top: 10%;
+.cadastro h1{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Courier Prime', monospace;
 }
 .cadastro div{
-    padding: var(--login-paddin);
+    padding: 0.7%;
 }
 .cadastro div label{
     font-family: 'Abril Fatface', cursive;
@@ -247,3 +247,34 @@ body{
     border-style: none;
     color: gray;
 }
+/*ADICIONAIS*/
+.exit{
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #881e3b;
+    font-weight: bold;
+  }
+  .loading{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #ededed;
+    border-top: 5px solid var(--login-background);
+    margin-left: auto;
+    margin-right: auto;
+    animation: loading 500ms infinite linear;
+  }
+  @keyframes loading {
+    from{
+      transform: rotate(360deg);
+    }
+  }
+  span{
+    color: red;
+    margin-top: 15px;
+    display: block;
+  }
+  
+  input.errorInput{
+    border: 3px solid red;
+  }
