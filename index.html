@@ -11,11 +11,11 @@
     <link rel="shortcut icon" href="/img/242452-removebg-preview.png"  >
 </head>
 <body>
-           
 
-    <div class="options">
 
-        <div class="nav_content">
+    <div class="options hidden">
+
+        <div class= "nav_content">
                 <ul class="nav_list">
                     <a href="#" class="nav_list-item" id="button-login">Login</a> 
                     <a href="#" class="nav_list-item" id="first-item">Lista de Clientes</a>                    
@@ -44,7 +44,7 @@
             <form action="" id="form-login" class="form-login">
               <div>
                 <label>Usuário:</label>
-                <input type="text" placeholder="Digite o usuário" name="user">
+                <input type="text" placeholder="Digite o usuário" name="name">
               </div>
               <div>
                 <label>Senha:</label>
@@ -53,6 +53,8 @@
               <div>
                 <button class="btn-login" type="submit">Entrar</button>
               </div>
+              <br>
+              <a href="#" class="nav_list-item" id="item">Criar nova conta</a> 
             </form>
           </div>
 
@@ -61,39 +63,62 @@
       <div class="loading hidden"></div>
 
       <div class="cadastro hidden">
-          <form action="GET" id="form-cadastro" >
+        
+        <button type="reset" id="back-to-top">Fechar</button> 
+        <form action="" id="form-cadastro" >
               <h1>Cadastro</h1>
-              <div>
-              <label>Nome:</label>
-              <input type="text" name="name" id="" placeholder="Digite seu nome">
-              <span></span>
+              <div class="form-control">
+              
+              <label>Nome do Usuário:</label>
+              <input type="text" name="name" id="" placeholder="Digite seu nome">   
+              <span></span>            
               </div>
-              <div>
+
+              <div id="form-control" class="form-control">
+               
               <label>Email:</label>
-              <input type="email" name="email" id="" placeholder="Digite seu email">
-              <span></span>
+              <input type="email" name="email" id="" placeholder="Digite seu email">  
+              <span></span>             
               </div>
-              <div>
+
+              <div class="form-control">
+              
               <label>Telefone:</label>
-              <input type="string" name="phone" id="" placeholder="Digite seu telefone">
-              <span></span>
+              <input type="number" name="phone" id="" placeholder="Digite seu telefone">              
+              <span></span> 
               </div>
-              <div>
+
+              <div class="form-control">
+               
               <label>Endereço:</label>
-              <input type="string" name="address" id="" placeholder="Digite seu endereço">
-              <span></span>
+              <input type="string" name="address" id="address" placeholder="Digite seu endereço">              
+              <span></span> 
               </div>
-              <div>
+
+              <div class="form-control">  
+              <label>Senha:</label>
+              <input type="password" name="password" id="password" placeholder="Digite sua senha">        
+              <span></span>      
+              </div>
+              <div class="form-control">
+                <br>
               <button class="btn-cadastro" type="submit">Cadastrar</button>
               </div>
+              
+              
+
+                
+
+            </div>
           </form>
-      </div>
+  
 
       <div class="container list-customers hidden">
           <h1>Listagem de clientes</h1>
-          <ul class="customers"></ul>
           <br>
-          <button href = "#" class="btn-exit">Fechar</button>
+          <ul class="customers"></ul>
+          
+          <button href = "#" class="exit">Fechar</button>
       </div>
 
       <div class="container register-products hidden">
@@ -185,7 +210,9 @@
         </form>
       </div> 
   </div>     
-    <script src="https://kit.fontawesome.com/b0d02c4c92.js" crossorigin="anonymous"></script>
+
     <script src="/javascript/main.js"></script>
+    <script src="https://kit.fontawesome.com/b0d02c4c92.js" crossorigin="anonymous"></script>
+    
 </body>
 </html>
