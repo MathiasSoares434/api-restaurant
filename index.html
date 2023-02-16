@@ -13,14 +13,15 @@
 <body>
 
 
-    <div class="options hidden">
+    <div class="options">
 
         <div class= "nav_content">
                 <ul class="nav_list">
                     <a href="#" class="nav_list-item" id="button-login">Login</a> 
                     <a href="#" class="nav_list-item" id="first-item">Lista de Clientes</a>                    
-                    <a href="#" class="nav_list-item" id="second-item">Cadastro de Cliente</a> 
+                    <a href="#" class="nav_list-item" id="second-item">Cadastro de Clientes</a> 
                     <a href="#" class="nav_list-item" id="third-item">Cadastro de Produtos</a> 
+                    <a href="#" class="nav_list-item" id="fifth-item">Listagem de Produtos</a> 
                     <a href="#" class="nav_list-item" id="forth-item">Pedido do Cliente</a> 
                 </ul>
         </div>
@@ -138,13 +139,19 @@
             </div>
             <br>
             <div>
-              <button type="submit">Cadastrar</button>
+              <button class="btn-cadastro" type="submit">Cadastrar</button>
             </div>
             <br>
           </form>
           <button href = "#" class="exit">Fechar</button>
       </div>
-      
+
+      <div class="container list-products hidden">
+        <h1>Listagem de Produtos</h1>
+        <ul class="products"></ul>
+        <button href = "#" class="exit">Fechar</button>
+      </div>
+
       <div class="container register-requests hidden">
         <h1>Fazer Pedidos:</h1>
         <br>
@@ -183,6 +190,9 @@
         <br>
         <button href = "#" class="exit">Fechar</abutton>
       </div>
+
+
+
       <div class="container list-requests hidden">
         <h1>Listagem de Pedidos</h1>
         <ul class="requests">

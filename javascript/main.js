@@ -7,6 +7,7 @@ const FirstItem = document.querySelector('#first-item')
 const SecondItem = document.querySelector('#second-item')
 const ThirdItem = document.querySelector('#third-item')
 const ForthItem = document.querySelector('#forth-item')
+const FifthItem = document.querySelector('#fifth-item')
 const itemLogin = document.querySelector('#item')
 //
 const formLogin = document.querySelector('#form-login')
@@ -20,6 +21,7 @@ const loginScreen = document.querySelector(".login-screen")
 const cadastro = document.querySelector(".cadastro")
 const registerProducts = document.querySelector(".register-products")
 const registerRequests = document.querySelector(".register-requests")
+const listProducts = document.querySelector('.list-products')
 const formCadastro = document.querySelector('#form-cadastro')
 
 
@@ -57,6 +59,7 @@ buttonLogin.addEventListener('click', function(e){
     cadastro.classList.add('hidden')
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         loginScreen.classList.remove('hidden')
@@ -70,6 +73,7 @@ FirstItem.addEventListener('click', function(e){
     cadastro.classList.add('hidden')
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         listCustomers.classList.remove('hidden')
@@ -84,6 +88,7 @@ SecondItem.addEventListener('click', function(e){
     listCustomers.classList.add('hidden')
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         cadastro.classList.remove('hidden')
@@ -98,6 +103,7 @@ ThirdItem.addEventListener('click', function(e){
     listCustomers.classList.add('hidden')
     cadastro.classList.add('hidden')
     registerRequests.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         registerProducts.classList.remove('hidden')
@@ -111,11 +117,26 @@ ForthItem.addEventListener('click', function(e){
     listCustomers.classList.add('hidden')
     cadastro.classList.add('hidden')
     registerProducts.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         registerRequests.classList.remove('hidden')
         loading.classList.add('hidden')       
       },800) 
+})
+FifthItem.addEventListener('click', function(e){
+  e.preventDefault()
+  loading.classList.remove('hidden')
+  loginScreen.classList.add('hidden') 
+  listCustomers.classList.add('hidden')
+  cadastro.classList.add('hidden')
+  registerProducts.classList.add('hidden')
+  registerRequests.classList.add('hidden')
+
+  setTimeout(function(){
+      listProducts.classList.remove('hidden')
+      loading.classList.add('hidden')       
+    },800) 
 })
 itemLogin.addEventListener('click', function(e){
     e.preventDefault()
@@ -125,6 +146,7 @@ itemLogin.addEventListener('click', function(e){
     listCustomers.classList.add('hidden')
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
+    listProducts.classList.add('hidden')
 
     setTimeout(function(){
         cadastro.classList.remove('hidden')
@@ -153,12 +175,12 @@ btn.addEventListener("click", function(e) {
           e.preventDefault()
           const id = this.dataset.id
 
-          fetch(`http://127.0.0.1:5000/api/customers/${id}`, {
+          fetch(`http://localhost:8080/api/customers/${id}`, {
             method: 'DELETE'
           }).then((response) => {
             response.json().then((data) => {
               if(data.message === 'success'){
-                listCustomers()
+                listOfCustomers()
                 alert("Cliente removido com sucesso")
               }else{
                 alert("Ops, houve um erro! Tente novamente!")
@@ -311,8 +333,121 @@ btn.addEventListener("click", function(e) {
 
 
 
+// Collection Produtos
 
-    
+
+    function addEventDeleteProduct(){
+      const buttonsDelete = document.querySelectorAll('.list-products a')
+      buttonsDelete.forEach((button) => {
+        button.addEventListener("click", function(e){
+          e.preventDefault()
+          const id = button.dataset.id
+          fetch(`http://localhost:8080/api/products/${id}`, {
+            method: 'DELETE'
+          }).then((response) => {
+            response.json().then((data) => {
+              if(data.message === 'success'){
+                listOfProducts()
+                alert("Produto removido com sucesso")         
+              }else{
+                alert("Ops, ocorreu um erro! Tente novamente!")
+              }
+            })
+          })
+        })
+      })
+    }
+
+      function listOfProducts(){
+        const list = document.querySelector('.products')
+        let htmlProduct = ''
+
+        fetch('http://localhost:8080/api/products').then((resolve) => {
+          resolve.json().then((data) => {
+            data.forEach((product) => {
+              htmlProduct += `
+              <li>
+              ${product.name} | R$ ${product.price}
+              <a href = "#" class = "button-delete" data-id = "${product._id}">[excluir]</a>
+              </li>     
+              `
+            })
+
+            list.innerHTML = htmlProduct
+            addEventDeleteProduct()
+          })
+        })
+      }
+
+      function verifyCampusAddProducts(name, price){
+        let verifyError = false
+
+        const inputName = document.forms['registerProducts']['name']
+        const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+        const verifyName = regexName.test(name)
+        if(!verifyName){
+          verifyError = true
+          inputName.classList.add('errorInput')
+          const span = inputName.nextElementSibling
+          span.innerHTML = 'Insira o nome do produto'
+        }else{
+          inputName.classList.remove('errorInput')
+          const span = inputName.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        const inputPrice = document.forms['registerProducts']['price']
+        if(!price){
+          verifyError = true
+          inputPrice.classList.add('errorInput')
+          const span = inputPrice.nextElementSibling
+          span.innerHTML = 'Insira o preço do produto'
+        }else{
+          inputPrice.classList.remove('errorInput')
+          const span = inputPrice.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        return verifyError
+      }
+
+      function addProducts(){
+        const formRegister = document.querySelector('#registerProducts')
+        formRegister.onsubmit = function(e){
+          e.preventDefault()
+
+          const name = document.forms['registerProducts']['name'].value
+          const price = document.forms['registerProducts']['price'].value
+          
+          const verifyForm = verifyCampusAddProducts(name, price)
+
+          if(!verifyForm){
+            fetch('http://localhost:8080/api/products', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                name,
+                price
+              })
+            }).then((response) => {
+              response.json().then((data) => {
+                if(data.message === 'success'){
+                  formRegister.reset()
+                  alert("Produto cadastrado com sucesso")
+                }else{
+                  alert("Ops, não foi possível cadastrar o produto! Tente novamente!")
+                }
+              })
+            })
+          }
+        }
+      }
+
+
+
+          
 
  
 
@@ -324,4 +459,6 @@ btn.addEventListener("click", function(e) {
     listOfCustomers()
     addCustomers()
     
-
+    addEventDeleteProduct()
+    listOfProducts()
+    addProducts()
