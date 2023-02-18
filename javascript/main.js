@@ -16,6 +16,8 @@ const login = document.querySelector(".login")
 const loading = document.querySelector(".loading")
 const options = document.querySelector(".options")
 const btn = document.querySelector("#back-to-top");
+const firstExit = document.querySelector('#firstExit')
+const secondExit = document.querySelector('#secondExit')
 //
 const listCustomers = document.querySelector(".list-customers")
 const loginScreen = document.querySelector(".login-screen")
@@ -25,6 +27,8 @@ const registerRequests = document.querySelector(".register-requests")
 const listProducts = document.querySelector('.list-products')
 const formCadastro = document.querySelector('#form-cadastro')
 const listInRequests = document.querySelector('.list-requests')
+
+
 
 
 // TELA DE LOGIN
@@ -180,6 +184,27 @@ btn.addEventListener("click", function(e) {
       },800)    
 
 });
+firstExit.addEventListener("click", function(e) {
+  e.preventDefault()
+  loading.classList.remove('hidden')
+  registerProducts.classList.add('hidden')
+  setTimeout(function(){
+      loginScreen.classList.remove('hidden')
+      loading.classList.add('hidden')       
+    },800)    
+
+})
+secondExit.addEventListener("click", function(e){
+  e.preventDefault()
+  loading.classList.remove('hidden')
+  registerRequests.classList.add('hidden')
+  
+  setTimeout(function(){
+    loginScreen.classList.remove('hidden')
+    loading.classList.add('hidden')       
+  },800)  
+})
+
 }
 
 // Coleção de clientes
@@ -252,7 +277,6 @@ btn.addEventListener("click", function(e) {
         const regexEmail = /\S+@\S+\.\S+/
         const verifyEmail = regexEmail.test(email)
         
-
  
         if(!verifyEmail){
           verifyError = true
