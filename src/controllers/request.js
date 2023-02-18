@@ -46,7 +46,7 @@ async function post(req, res){
 }
 
 async function put(req, res){
-    const {id} = req.params
+    const { id } = req.params
     const request = await RequestsModel.findByIdAndUpdate({_id:id}, req.body, {new: true})
 
     res.send({
