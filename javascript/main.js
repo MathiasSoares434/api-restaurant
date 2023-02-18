@@ -316,19 +316,7 @@ secondExit.addEventListener("click", function(e){
           inputAddress.classList.remove('errorInput')
           const span = inputAddress.nextElementSibling
           span.innerHTML = ''
-        }
-        
-        const inputPassword = document.forms['form-cadastro']['password']
-        if(!password, password.length < 8){
-          verifyError = true
-          inputPassword.classList.add('errorInput')
-          const span = inputPassword.nextElementSibling
-          span.innerHTML = 'Senha inválida, preencha corretamente!'
-        }else{
-          inputPassword.classList.remove('errorInput')
-          const span = inputPassword.nextElementSibling
-          span.innerHTML = ''
-        }
+        }      
 
         return verifyError
       }
@@ -341,9 +329,9 @@ secondExit.addEventListener("click", function(e){
           const email = document.forms['form-cadastro']['email'].value
           const phone = document.forms['form-cadastro']['phone'].value
           const address = document.forms['form-cadastro']['address'].value 
-          const password = document.forms['form-cadastro']['password'].value
+          
 
-          const verifyForm = verifyCampusAddCustomers(name, email, phone, address, password)
+          const verifyForm = verifyCampusAddCustomers(name, email, phone, address)
 
           if(!verifyForm){
             fetch('http://localhost:8080/api/customers', {
@@ -356,7 +344,7 @@ secondExit.addEventListener("click", function(e){
                 email,
                 phone,
                 address,
-                password
+
               })
             }).then((response) => {
               response.json().then((data) => {
