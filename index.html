@@ -13,16 +13,17 @@
 <body>
 
 
-    <div class="options">
+    <div class="options hidden">
 
         <div class= "nav_content">
                 <ul class="nav_list">
                     <a href="#" class="nav_list-item" id="button-login">Login</a> 
                     <a href="#" class="nav_list-item" id="first-item">Lista de Clientes</a>                    
                     <a href="#" class="nav_list-item" id="second-item">Cadastro de Clientes</a> 
-                    <a href="#" class="nav_list-item" id="third-item">Cadastro de Produtos</a> 
-                    <a href="#" class="nav_list-item" id="fifth-item">Listagem de Produtos</a> 
-                    <a href="#" class="nav_list-item" id="forth-item">Pedido do Cliente</a> 
+                    <a href="#" class="nav_list-item" id="fifth-item">Listagem de Produtos</a>  
+                    <a href="#" class="nav_list-item" id="third-item">Cadastro de Produtos</a>
+                    <a href="#" class="nav_list-item" id="forth-item">Pedir produto</a> 
+                    <a href="#" class="nav_list-item" id="sixth-item">Lista de Pedidos</a> 
                 </ul>
         </div>
 
@@ -149,7 +150,6 @@
       <div class="container list-products hidden">
         <h1>Listagem de Produtos</h1>
         <ul class="products"></ul>
-        <button href = "#" class="exit">Fechar</button>
       </div>
 
       <div class="container register-requests hidden">
@@ -160,16 +160,19 @@
             <label>Código do cliente:</label>
             <select name="codeCustomer" id="" class="codeCustomer"></select>
             <span></span>
+            <br>
           </div>
           <div>
             <label>Código do produto:</label>
             <select name="codeProduct" id="" class="codeProduct"></select>
             <span></span>
+            <br>
           </div>
           <div>
             <label>Data de criação:</label>
             <input type="text" name="dataCriation" id="" placeholder="dd/mm/aaaa">
             <span></span>
+            <br>
           </div>        
           <div>
             <label>Status do Pedido:</label>
@@ -187,7 +190,6 @@
             <button type="submit">Cadastrar Pedido:</button>
           </div>
         </form>
-        <br>
         <button href = "#" class="exit">Fechar</abutton>
       </div>
 
@@ -197,7 +199,7 @@
         <h1>Listagem de Pedidos</h1>
         <ul class="requests">
         </ul>
-        <button href = "#" class="exit">Fechar</button>
+        
       </div>
 
       <div class="container edit-status-request hidden">
@@ -214,7 +216,7 @@
             <option value="entrega-cancelada">Cancelado</option>
           </select>
           <div>
-            <br>
+            
             <button type="submit" class="btn-edit">Alterar Status do Pedido</button>
           </div>
         </form>

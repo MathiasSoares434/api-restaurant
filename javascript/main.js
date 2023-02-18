@@ -1,13 +1,14 @@
 /*VARIAVEIS DE LOGIN E DO NAV-BAR*/
 //
 const defaultUser = 'admin'
-const defaultPassword = 'administrador123'
+const defaultPassword = 'mugiwara123'
 const buttonLogin = document.querySelector('#button-login')
 const FirstItem = document.querySelector('#first-item')
 const SecondItem = document.querySelector('#second-item')
 const ThirdItem = document.querySelector('#third-item')
 const ForthItem = document.querySelector('#forth-item')
 const FifthItem = document.querySelector('#fifth-item')
+const SixthItem = document.querySelector('#sixth-item')
 const itemLogin = document.querySelector('#item')
 //
 const formLogin = document.querySelector('#form-login')
@@ -23,7 +24,7 @@ const registerProducts = document.querySelector(".register-products")
 const registerRequests = document.querySelector(".register-requests")
 const listProducts = document.querySelector('.list-products')
 const formCadastro = document.querySelector('#form-cadastro')
-
+const listInRequests = document.querySelector('.list-requests')
 
 
 // TELA DE LOGIN
@@ -60,7 +61,7 @@ buttonLogin.addEventListener('click', function(e){
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
     listProducts.classList.add('hidden')
-
+    listInRequests.classList.add('hidden')
     setTimeout(function(){
         loginScreen.classList.remove('hidden')
         loading.classList.add('hidden')       
@@ -74,7 +75,7 @@ FirstItem.addEventListener('click', function(e){
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
     listProducts.classList.add('hidden')
-
+    listInRequests.classList.add('hidden')
     setTimeout(function(){
         listCustomers.classList.remove('hidden')
         loading.classList.add('hidden')       
@@ -89,7 +90,7 @@ SecondItem.addEventListener('click', function(e){
     registerProducts.classList.add('hidden')
     registerRequests.classList.add('hidden')
     listProducts.classList.add('hidden')
-
+    listInRequests.classList.add('hidden')
     setTimeout(function(){
         cadastro.classList.remove('hidden')
         loading.classList.add('hidden')       
@@ -104,7 +105,7 @@ ThirdItem.addEventListener('click', function(e){
     cadastro.classList.add('hidden')
     registerRequests.classList.add('hidden')
     listProducts.classList.add('hidden')
-
+    listInRequests.classList.add('hidden')
     setTimeout(function(){
         registerProducts.classList.remove('hidden')
         loading.classList.add('hidden')       
@@ -118,7 +119,7 @@ ForthItem.addEventListener('click', function(e){
     cadastro.classList.add('hidden')
     registerProducts.classList.add('hidden')
     listProducts.classList.add('hidden')
-
+    listInRequests.classList.add('hidden')
     setTimeout(function(){
         registerRequests.classList.remove('hidden')
         loading.classList.add('hidden')       
@@ -132,9 +133,23 @@ FifthItem.addEventListener('click', function(e){
   cadastro.classList.add('hidden')
   registerProducts.classList.add('hidden')
   registerRequests.classList.add('hidden')
-
+  listInRequests.classList.add('hidden')
   setTimeout(function(){
       listProducts.classList.remove('hidden')
+      loading.classList.add('hidden')       
+    },800) 
+})
+SixthItem.addEventListener('click', function(e){
+  e.preventDefault()
+  loading.classList.remove('hidden')
+  loginScreen.classList.add('hidden') 
+  listCustomers.classList.add('hidden')
+  cadastro.classList.add('hidden')
+  registerProducts.classList.add('hidden')
+  registerRequests.classList.add('hidden')
+  listProducts.classList.add('hidden')
+  setTimeout(function(){
+      listInRequests.classList.remove('hidden')
       loading.classList.add('hidden')       
     },800) 
 })
@@ -202,7 +217,8 @@ btn.addEventListener("click", function(e) {
             response.json().then(data =>{
                 data.forEach((customer) =>{
                     htmlCustomer += `
-                    <li class = "listOfCustomers">
+                    <br>
+                    <li class = "listOfAll" >
                       ${customer.name} | ${customer.email}
                       <a href = "#" class = "button-delete"  data-id = "${customer._id}">[excluir]</a>
                     </li>
@@ -235,7 +251,9 @@ btn.addEventListener("click", function(e) {
         const inputEmail = document.forms['form-cadastro']['email']
         const regexEmail = /\S+@\S+\.\S+/
         const verifyEmail = regexEmail.test(email)
+        
 
+ 
         if(!verifyEmail){
           verifyError = true
           inputEmail.classList.add('errorInput')
@@ -246,6 +264,10 @@ btn.addEventListener("click", function(e) {
           const span = inputEmail.nextElementSibling
           span.innerHTML = ''
         }
+
+
+
+
 
 
         const inputPhone = document.forms['form-cadastro']['phone']
@@ -366,7 +388,8 @@ btn.addEventListener("click", function(e) {
           resolve.json().then((data) => {
             data.forEach((product) => {
               htmlProduct += `
-              <li>
+              <br>
+              <li class = "listOfAll" >
               ${product.name} | R$ ${product.price}
               <a href = "#" class = "button-delete" data-id = "${product._id}">[excluir]</a>
               </li>     
@@ -445,7 +468,224 @@ btn.addEventListener("click", function(e) {
         }
       }
 
+      // Collection Pedidos
+      function addEventEditRequest(){
+        const buttonsEdit = document.querySelectorAll(".edit-status")
+        const editStatus = document.querySelector('.edit-status-request')
+        const listRequests = document.querySelector('.list-requests')
+        console.log(buttonsEdit)
+        buttonsEdit.forEach((button) => {
+          button.addEventListener("click", function(e){
+            e.preventDefault()
+            editStatus.classList.remove('hidden')
+            listRequests.classList.add('hidden')
+            const id = button.dataset.id
+            document.forms['formEdit'].id.value = id
+          })
+        })
+      }
 
+      function listOfRequests(){
+        const list = document.querySelector('.requests')
+        let htmlRequest = ''
+
+        fetch('http://localhost:8080/api/requests').then((response) => {
+          response.json().then((data) => {
+            data.requests.forEach((request) => {
+              htmlRequest += `
+              <li class = "listOfAll requests" > 
+              <br>
+                <p>Código do Cliente: ${request.codeCustomer}</p>
+                <p>Código do Produto: ${request.codeProduct}</p>
+                <p>Data de criação: ${request.dataCriation}</p>
+                <p>Status do pedido: ${request.status}</p>
+                <a href = "#" class = "edit-status" data-id = "${request._id}" data-status = "${request.status}">[alterar status do pedido]</a>
+              </li>
+              `
+            })
+            list.innerHTML = htmlRequest
+            addEventEditRequest()
+          })
+        })
+      }
+
+      function verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status){
+        let verifyError = false
+
+        const inputCodeCustomer = document.forms['registerRequests']['codeCustomer']
+        if(!codeCustomer){
+          verifyError = true
+          inputCodeCustomer.classList.add('errorInput')
+          const span = inputCodeCustomer.nextElementSibling
+          span.innerHTML = 'Insira o código do cliente'
+        }else{
+          inputCodeCustomer.classList.remove('errorInput')
+          const span = inputCodeCustomer.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        const inputCodeProduct = document.forms['registerRequests']['codeProduct']
+        if(!codeProduct){
+          verifyError = true
+          inputCodeProduct.classList.add('errorInput')
+          const span = inputCodeProduct.nextElementSibling
+          span.innerHTML = 'Insira o código do produto'
+        }else{
+          inputCodeProduct.classList.remove('errorInput')
+          const span = inputCodeProduct.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        const inputDataCriation = document.forms['registerRequests']['dataCriation']
+        if(!dataCriation){
+          verifyError = true
+          inputDataCriation.classList.add('errorInput')
+          const span = inputDataCriation.nextElementSibling
+          span.innerHTML = 'Insira a data de criação do produto'
+        }else{
+          inputDataCriation.classList.remove('errorInput')
+          const span = inputDataCriation.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        const inputStatus = document.forms['registerRequests']['statusRequest']
+        if(!status){
+          verifyError = true
+          inputStatus.classList.add('errorInput')
+          const span = inputStatus.nextElementSibling
+          span.innerHTML = 'Insira o status do pedido'
+        }else{
+          inputStatus.classList.remove('errorInput')
+          const span = inputStatus.nextElementSibling
+          span.innerHTML = ''
+        }
+
+        return verifyError
+      }
+
+      function addRequests(){
+        const formRegister = document.querySelector('.registerRequests')
+        const codeCustomer = document.querySelector('.codeCustomer')
+        const codeProducts = document.querySelector('.codeProduct')
+        let optionsCustomers = ''
+        let optionProducts = ''
+
+        fetch('http://localhost:8080/api/requests').then((response) => {
+          response.json().then((data) => {
+            data.customers.forEach((customer) => {
+              optionsCustomers += `
+                <option>${customer.name}</option>
+              `
+            })
+            codeCustomer.innerHTML = optionsCustomers
+          })
+
+        })
+
+        fetch('http://localhost:8080/api/requests').then((response) => {
+          response.json().then((data) => {
+            data.products.forEach((product) => {
+              optionProducts += `
+                <option>${product.name}</option>
+              `
+            })
+
+            
+            codeProducts.innerHTML = optionProducts
+          })
+        })
+
+      
+        formRegister.addEventListener("submit", function(e){
+          e.preventDefault()
+
+          const codeCustomer = document.forms['registerRequests']['codeCustomer'].value
+          const codeProduct = document.forms['registerRequests']['codeProduct'].value
+          const dataCriation = document.forms['registerRequests']['dataCriation'].value
+          const status = document.forms['registerRequests']['statusRequest'].value
+          const verifyForm = verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status)
+
+      
+          
+          if(!verifyForm){
+            fetch('http://localhost:8080/api/requests', {
+              method: 'POST',
+              headers:{
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                codeCustomer,
+                codeProduct,
+                dataCriation,
+                status
+              })
+            }).then((response) => {
+              response.json().then((data) => {
+                if(data.message === 'success'){
+                  formRegister.reset()
+                  alert("Pedido cadastrado com sucesso!")
+                  listOfRequests()
+                }else{
+                  alert("Ops, ocorreu um erro! Tente novamente!")
+                }
+              })
+            })
+          }
+          
+        })
+      }
+
+      function editStatus(){
+        const formEdit = document.querySelector('.formEdit')
+        const editStatus = document.querySelector('.edit-status-request')
+        const listRequests = document.querySelector('.list-requests')
+        formEdit.onsubmit = function(e){
+          e.preventDefault()
+
+          const id = document.forms['formEdit']['id'].value
+          const status = document.forms['formEdit']['statusRequest'].value
+
+          fetch(`http://localhost:8080/api/requests/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              status
+            })
+          }).then((response) => {
+            response.json().then((data) => {
+              if(data.message === 'success'){
+                alert("Produto alterado com sucesso")
+                listRequests.classList.remove('hidden')
+                editStatus.classList.add('hidden')
+              }else{
+                alert("Ops, houve um erro! Tente novamente!")
+              }
+            })
+          })
+        }
+      }
+
+      function exit(){
+        const buttonsExit = document.querySelectorAll('.exit')
+        
+        buttonsExit.forEach((button) => {
+          button.addEventListener("click", function(e){
+            e.preventDefault()
+            const parentElement = button.parentElement
+            parentElement.classList.add('hidden')
+          })
+        })
+      }
+
+      function openOptions(){
+        const iconOptions = document.querySelector('.options')
+
+        iconOptions.onclick = function(){
+          document.querySelector('div ul').classList.toggle('open')
+        }
+      }
 
           
 
@@ -462,3 +702,9 @@ btn.addEventListener("click", function(e) {
     addEventDeleteProduct()
     listOfProducts()
     addProducts()
+
+    listOfRequests()
+    addRequests()
+    editStatus()
+    exit()
+    openOptions()
