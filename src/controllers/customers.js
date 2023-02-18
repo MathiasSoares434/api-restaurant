@@ -16,7 +16,6 @@ async function post(req, res){
         email,
         phone,
         adress,
-        password
     } = req.body
 
     const customer = new CustomersModel({
@@ -24,7 +23,6 @@ async function post(req, res){
         email,
         phone,
         adress,
-        password
     })
 
     customer.save()
